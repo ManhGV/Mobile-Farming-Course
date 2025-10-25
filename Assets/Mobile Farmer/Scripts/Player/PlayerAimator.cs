@@ -28,4 +28,14 @@ public class PlayerAimator : MonoBehaviour
     {
         _animator.Play("Run");
     }
+    
+    public void PlaySowAnimation()
+    {
+        _animator.SetLayerWeight(1, 1);
+    }
+
+    public void StopSowAnimation()
+    {
+        _animator.SetLayerWeight(1, 0);
+    }
 }

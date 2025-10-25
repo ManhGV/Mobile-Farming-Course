@@ -6,13 +6,13 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UpperBody
-  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Name: PlayerUpperBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: Armature
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Armature/Hips
     m_Weight: 0
   - m_Path: Armature/Hips/LeftUpLeg
@@ -36,7 +36,7 @@ AvatarMask:
   - m_Path: Armature/Hips/RightUpLeg/RightLeg/RightFoot/RightToeBase/RightToeBase_end
     m_Weight: 0
   - m_Path: Armature/Hips/Spine
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Hips/Spine/Spine1
     m_Weight: 1
   - m_Path: Armature/Hips/Spine/Spine1/Spine2
