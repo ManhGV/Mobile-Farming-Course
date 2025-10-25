@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565c4e414da4ffb4690b88c9637a7544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CropTile
+  cropParent: {fileID: 2254765869272350396}
 --- !u!1 &3924518660835078846
 GameObject:
   m_ObjectHideFlags: 0
