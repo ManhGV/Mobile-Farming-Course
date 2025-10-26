@@ -1258,7 +1258,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Watering Can Renderer
+    path: Armature/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand/WateringCan
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -1496,7 +1496,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 406239914
+      path: 84893259
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -7219,7 +7219,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Watering Can Renderer
+    path: Armature/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand/WateringCan
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -11323,7 +11323,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: Water
+    functionName: PlayerWaterParticle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

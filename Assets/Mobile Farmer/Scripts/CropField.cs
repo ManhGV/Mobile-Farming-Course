@@ -12,9 +12,11 @@ public class CropField : MonoBehaviour
     [SerializeField] private CropData cropData;
     private TileFieldState state;
     private int tilesSown;
+    private int tilesWatered;
     
     [Header("Actions")]
     public static Action<CropField> OnFullySown;
+    public static Action<CropField> OnFullyWatered;
 
     void Start()
     {
@@ -80,8 +82,40 @@ public class CropField : MonoBehaviour
         return _cropTiles[closestCropTileIndex];
     }
 
-    public bool IsEmpty()
+
+    public void WaterColliderCallback(Vector3[] waterPositions)
     {
-        return state == TileFieldState.Empty;
+        for (int i = 0; i < waterPositions.Length; i++)
+        {
+            CropTile closestCropTile = GetClosestCropTile(waterPositions[i]);
+                
+            if(closestCropTile == null)
+                continue;
+            
+            if(!closestCropTile.IsSown())
+                continue;
+            
+            Water(closestCropTile);
+        }
     }
+
+    private void Water(CropTile closestCropTile)
+    {
+        closestCropTile.Water();
+        tilesWatered++;
+        if (tilesWatered == _cropTiles.Count)
+            FieldFullyWatered();
+    }
+
+    private void FieldFullyWatered()
+    {
+        state = TileFieldState.Watered;
+        
+        OnFullyWatered?.Invoke(this);
+    }
+
+    public bool IsEmpty() => state == TileFieldState.Empty;
+    public bool IsSown() => state == TileFieldState.Sown;
+    public bool IsWatered() => state == TileFieldState.Watered;
+
 }

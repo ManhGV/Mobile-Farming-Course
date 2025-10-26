@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CropTile
   cropParent: {fileID: 2254765869272350396}
+  tileRenderer: {fileID: 441308529260402478}
 --- !u!1 &3924518660835078846
 GameObject:
   m_ObjectHideFlags: 0

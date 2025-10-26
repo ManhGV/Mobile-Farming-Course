@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Element")]
+    [SerializeField] private Transform cropRenderer;
+    public void ScaleUp()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        cropRenderer.localScale = Vector3.one;
     }
 }
