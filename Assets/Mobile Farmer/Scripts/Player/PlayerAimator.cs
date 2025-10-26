@@ -50,4 +50,13 @@ public class PlayerAimator : MonoBehaviour
         _animator.SetLayerWeight(2, 0);
         waterParticles.Stop();
     }
+
+    public void PlayHavertAnimation()
+    {
+        _animator.SetLayerWeight(3, 1);
+    }
+    public void StopHavertAnimation()
+    {
+        _animator.SetLayerWeight(3, 0);
+    }
 }

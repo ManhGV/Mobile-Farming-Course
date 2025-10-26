@@ -40,5 +40,12 @@ public class CropTile : MonoBehaviour
         _state = TileFieldState.Watered;
         tileRenderer.gameObject.LeanColor(Color.white * .3f, 1);
         _crop.ScaleUp();
-    } 
+    }
+
+    public void Harvest()
+    {
+        _state = TileFieldState.Empty;
+        _crop.ScaleDown();
+        tileRenderer.gameObject.LeanColor(Color.white, 1);
+    }
 }
