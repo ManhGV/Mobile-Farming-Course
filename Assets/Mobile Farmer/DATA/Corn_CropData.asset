@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9924752f4a17604ebcddbd917620787, type: 3}
   m_Name: Corn_CropData
   m_EditorClassIdentifier: Assembly-CSharp::CropData
-  cropPrefabs: {fileID: 4336264311942763885, guid: 0e8f8aadace0816499ca54d6b3ea5aad, type: 3}
+  cropPrefabs: {fileID: 6614125161075303023, guid: 750559f1db53b8c4c8243e149158dfed, type: 3}

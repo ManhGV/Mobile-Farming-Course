@@ -118,4 +118,18 @@ public class CropField : MonoBehaviour
     public bool IsSown() => state == TileFieldState.Sown;
     public bool IsWatered() => state == TileFieldState.Watered;
 
+    [NaughtyAttributes.Button]
+    private void InstantlySowTiles()
+    {
+        for (int i = 0; i < _cropTiles.Count; i++)
+            Sow(_cropTiles[i]);
+    }
+
+    [NaughtyAttributes.Button]
+    private void InstantlyWaterTiles()
+    {
+        for (int i = 0; i < _cropTiles.Count; i++)
+            Water(_cropTiles[i]);
+    }
+    
 }
