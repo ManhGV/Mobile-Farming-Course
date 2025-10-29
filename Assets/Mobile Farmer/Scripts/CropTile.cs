@@ -1,12 +1,6 @@
 using System;
 using UnityEngine;
-
-public enum TileFieldState
-{
-    Empty,
-    Sown, // Trồng cây rồi
-    Watered // Tưới nước rồi
-}
+using UnityEngine.Events;
 
 public class CropTile : MonoBehaviour
 {
@@ -16,6 +10,10 @@ public class CropTile : MonoBehaviour
     [SerializeField] private Transform cropParent;
     [SerializeField] private MeshRenderer tileRenderer;
     private Crop _crop;
+    private CropData _cropData;
+
+    [Header("Events")]
+    public static Action<CropType> OnCropHavested;
 
     private void Start()
     {
@@ -26,6 +24,8 @@ public class CropTile : MonoBehaviour
     {
         _state = TileFieldState.Sown;
         _crop = Instantiate(cropData.cropPrefabs, transform.position, Quaternion.identity, cropParent);
+        
+        _cropData = cropData;
     }
 
     public bool IsEmpty()
@@ -47,5 +47,7 @@ public class CropTile : MonoBehaviour
         _state = TileFieldState.Empty;
         _crop.ScaleDown();
         tileRenderer.gameObject.LeanColor(Color.white, 1);
+        
+        OnCropHavested?.Invoke(_cropData.cropType);
     }
 }

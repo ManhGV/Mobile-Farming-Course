@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9924752f4a17604ebcddbd917620787, type: 3}
-  m_Name: Corn_CropData
+  m_Name: Tomato_CropData
   m_EditorClassIdentifier: Assembly-CSharp::CropData
-  cropPrefabs: {fileID: 6614125161075303023, guid: 750559f1db53b8c4c8243e149158dfed, type: 3}
-  cropType: 0
-  icon: {fileID: 21300000, guid: 82b1f675f4ea8fb4c8b63b1df1418228, type: 3}
+  cropPrefabs: {fileID: 7727820645096005293, guid: ca8201a55ec75ba4d9dbd6743dd78952, type: 3}
+  cropType: 1
+  icon: {fileID: 21300000, guid: 69f62ad8086630a4ea97d69f8c6a9367, type: 3}
