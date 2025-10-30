@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - CropField
+  - Buyer
   layers:
   - Default
   - TransparentFX

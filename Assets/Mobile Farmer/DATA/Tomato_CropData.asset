@@ -15,3 +15,4 @@ MonoBehaviour:
   cropPrefabs: {fileID: 7727820645096005293, guid: ca8201a55ec75ba4d9dbd6743dd78952, type: 3}
   cropType: 1
   icon: {fileID: 21300000, guid: 69f62ad8086630a4ea97d69f8c6a9367, type: 3}
+  price: 2
