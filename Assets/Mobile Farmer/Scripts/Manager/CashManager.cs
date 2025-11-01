@@ -28,6 +28,23 @@ public class CashManager : MonoBehaviour
         SaveData();
     }
 
+    public void UseCoins(int i)
+    {
+        AddCoins(-i);
+    }
+    
+
+    public int GetCoint()
+    {
+        return coins;
+    }
+
+    [NaughtyAttributes.Button]
+    private void Add500Coins()
+    {
+        AddCoins(500);
+    }
+    
     public void LoadData()
     {
         coins = PlayerPrefs.GetInt("Coins");
