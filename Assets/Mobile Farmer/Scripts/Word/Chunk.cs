@@ -9,6 +9,7 @@ public class Chunk : MonoBehaviour
     [SerializeField] private GameObject lockedElements;
     [SerializeField] private TextMeshPro priceText;
     [SerializeField] private BoxCollider boxTrigger;
+    private ChunkWall chunkWall;
 
     [Header("Setting")]
     [SerializeField] private int initialPrice; 
@@ -18,6 +19,12 @@ public class Chunk : MonoBehaviour
     [Header("Actions")]
     public static Action onUnlocked;
     public static Action onPriceChanged;
+
+    private void Awake()
+    {
+        chunkWall = GetComponent<ChunkWall>();
+    }
+
     private void Start()
     {
         currentPrice = initialPrice;
@@ -55,6 +62,11 @@ public class Chunk : MonoBehaviour
         unlocked = true;
         if(CanSave) 
             onUnlocked?.Invoke();
+    }
+
+    public void UpdateWall(int configuration)
+    {
+        chunkWall.Configire(configuration);
     }
 
     public bool IsUnlocked() => unlocked;

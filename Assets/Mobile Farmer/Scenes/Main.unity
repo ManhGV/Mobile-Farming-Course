@@ -1057,7 +1057,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fb69ec73ad24745875ba3817a4bc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WordManager
-  word: {fileID: 2092848998}
+  wordTF: {fileID: 2092848998}
+  gridSize: 20
+  gridScale: 5
 --- !u!1 &377490923
 GameObject:
   m_ObjectHideFlags: 0
@@ -8122,11 +8124,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1805673934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1050089591 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1637597637480281264, guid: a1eba5bec4b03b3448578e216bcdf06c, type: 3}
-  m_PrefabInstance: {fileID: 5109083028654450663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1068046857
 GameObject:
   m_ObjectHideFlags: 0
@@ -15473,7 +15470,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1050089591}
+  - {fileID: 5791331900235387735}
   - {fileID: 830185566}
   - {fileID: 826874202}
   - {fileID: 175802170}
@@ -16732,6 +16729,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &5791331900235387735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1637597637480281264, guid: a1eba5bec4b03b3448578e216bcdf06c, type: 3}
+  m_PrefabInstance: {fileID: 5109083028654450663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6021275725588903268
 Transform:
   m_ObjectHideFlags: 0
