@@ -19,10 +19,10 @@ public class PlayerBuyerInteractor : MonoBehaviour
 
         int coinsEarned = 0;
         for (int i = 0; i < items.Length; i++)
-        {
             coinsEarned += DataManager.instance.GetCropPriceFromCropType(items[i].cropType) * items[i].amount;
-        }
-        CashManager.instance.AddCoins(coinsEarned);
+        
+        TransactionVFXManager.instance.PlayCoinParticles(coinsEarned);
+        
         _inventoryManager.ClearInventory();
     }
 }
