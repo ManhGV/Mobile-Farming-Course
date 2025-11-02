@@ -69,6 +69,11 @@ public class Chunk : MonoBehaviour
         chunkWall.Configire(configuration);
     }
 
+    public void DisplayLockedElements()
+    {
+        lockedElements.SetActive(true);
+    }
+
     public bool IsUnlocked() => unlocked;
     
     public int GetCurrentPrice() => currentPrice;

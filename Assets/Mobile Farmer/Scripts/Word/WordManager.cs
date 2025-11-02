@@ -46,6 +46,7 @@ public class WordManager : MonoBehaviour
 
         InitGrid();
         UpdateChunkWalls();
+        UpdateGridRenderers();
     }
 
     private void InitGrid()
@@ -97,6 +98,36 @@ public class WordManager : MonoBehaviour
                 }
             }
     }
+
+    /// <summary>
+    /// nhìn thấy các ô bên cạnh ô mở khóa
+    /// </summary>
+    private void UpdateGridRenderers()
+    {
+        for (int x = 0; x < grid.GetLength(0); x++)
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                Chunk chunk = grid[x, y];
+
+                if (chunk == null)
+                    continue;
+                if(chunk.IsUnlocked())
+                    continue;
+                Chunk fornt = GetGrid(x, y + 1);
+                Chunk right = GetGrid(x + 1, y);
+                Chunk back = GetGrid(x, y - 1);
+                Chunk left = GetGrid(x - 1, y);
+
+                if (fornt && fornt.IsUnlocked())
+                    chunk.DisplayLockedElements();    
+                else if(right&& right.IsUnlocked())
+                    chunk.DisplayLockedElements();    
+                else if(back&& back.IsUnlocked())
+                    chunk.DisplayLockedElements();    
+                else if(left&& left.IsUnlocked())
+                    chunk.DisplayLockedElements();    
+            }
+    }
     
     private Chunk GetGrid(int x, int y)
     {
@@ -126,6 +157,7 @@ public class WordManager : MonoBehaviour
     {
         UpdateChunkWalls();
         SaveWord();
+        UpdateGridRenderers();
     }
 
     public void ChunkPriceChangeCallback()
