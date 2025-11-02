@@ -9,12 +9,14 @@ public class Chunk : MonoBehaviour
     [SerializeField] private GameObject lockedElements;
     [SerializeField] private TextMeshPro priceText;
     [SerializeField] private BoxCollider boxTrigger;
+    [SerializeField] private MeshFilter chunkFilter;
     private ChunkWall chunkWall;
 
     [Header("Setting")]
     [SerializeField] private int initialPrice; 
     private int currentPrice;
     private bool unlocked = false;
+    private int congiguration;
 
     [Header("Actions")]
     public static Action onUnlocked;
@@ -66,12 +68,18 @@ public class Chunk : MonoBehaviour
 
     public void UpdateWall(int configuration)
     {
+        this.congiguration = configuration;
         chunkWall.Configire(configuration);
     }
 
     public void DisplayLockedElements()
     {
         lockedElements.SetActive(true);
+    }
+
+    public void SetRenderer(Mesh chunkShape)
+    {
+        chunkFilter.mesh = chunkShape;
     }
 
     public bool IsUnlocked() => unlocked;

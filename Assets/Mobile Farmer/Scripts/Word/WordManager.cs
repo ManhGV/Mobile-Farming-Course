@@ -5,6 +5,19 @@ using UnityEngine;
 
 public class WordManager : MonoBehaviour
 {
+    enum ChunkShape
+    {
+        None,
+        TopRight,
+        BottomRight,
+        BottomLeft,
+        TopLeft,
+        Top,
+        Right,
+        Bottom,
+        Left,
+        Four
+    }
     [Header("Element")]
     [SerializeField] private Transform wordTF;
     private Chunk[,] grid;
@@ -17,6 +30,9 @@ public class WordManager : MonoBehaviour
     private WordData wordData;
     string dataPath;
     private bool shouldSave;
+
+    [Header("Chunk Meshes")]
+    [SerializeField] private Mesh[] chunkShapes;
 
     private void Awake()
     {
@@ -95,8 +111,64 @@ public class WordManager : MonoBehaviour
                         configuration = configuration + 8;
                     
                     chunk.UpdateWall(configuration);
+                    SetChunkRenderer(chunk, configuration);
                 }
             }
+    }
+
+    private void SetChunkRenderer(Chunk chunk, int configuration)
+    {
+        switch (configuration)
+        {
+            case 0:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Four]); 
+                break;
+            case 1:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Bottom]); 
+                break;
+            case 2:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Left]); 
+                break;
+            case 3:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.BottomLeft]); 
+                break;
+            case 4:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Top]); 
+                break;
+            case 5:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+            case 6:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.TopLeft]); 
+                break;
+            case 7:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+            case 8:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Right]); 
+                break;
+            case 9:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.BottomRight]); 
+                break;
+            case 10:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+            case 11:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+            case 12:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.TopRight]); 
+                break;
+            case 13:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+            case 14:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+            case 15:
+                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                break;
+        }
     }
 
     /// <summary>
