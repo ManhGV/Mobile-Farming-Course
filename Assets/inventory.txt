@@ -2,7 +2,7 @@
     "items": [
         {
             "cropType": 2,
-            "amount": 30
+            "amount": 20
         }
     ]
 }
