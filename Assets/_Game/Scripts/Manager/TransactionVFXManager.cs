@@ -59,11 +59,11 @@ public class TransactionVFXManager : MonoBehaviour
         coinPS.GetParticles(particles);
         
         Vector3 dir = (coinRectTransform.position-_camera.transform.position).normalized;
-        Vector3 targetPos = _camera.transform.position + dir * (Vector3.Distance(_camera.transform.position,coinPS.transform.position));
         
         while (coinPS.isPlaying)
         {
             coinPS.GetParticles(particles);
+            Vector3 targetPos = _camera.transform.position + dir * (Vector3.Distance(_camera.transform.position,coinPS.transform.position));
             for (int i = 0; i < particles.Length; i++)
             {
                 if (particles[i].remainingLifetime <= 0)

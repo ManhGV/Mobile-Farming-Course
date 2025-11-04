@@ -2,6 +2,7 @@ public enum CropType
 {
     Corn,
     Tomato,
+    Apple,
 }
 
 public enum TileFieldState

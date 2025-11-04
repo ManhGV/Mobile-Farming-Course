@@ -59,4 +59,15 @@ public class PlayerAimator : MonoBehaviour
     {
         _animator.SetLayerWeight(3, 0);
     }
+
+    public void PlayShakeTreeAnimation()
+    {
+        _animator.SetLayerWeight(4,1);
+        _animator.Play("Shake Tree");
+    }
+
+    public void StopShakeTreeAnimation()
+    {
+        _animator.SetLayerWeight(4,0);
+    }
 }

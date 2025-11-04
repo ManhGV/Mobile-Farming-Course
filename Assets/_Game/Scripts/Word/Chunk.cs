@@ -87,4 +87,13 @@ public class Chunk : MonoBehaviour
     public int GetCurrentPrice() => currentPrice;
     
     public int GetInitialPrice() => initialPrice;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, Vector3.one * 5);
+        
+        Gizmos.color = new Color(0,0,0,0);
+        Gizmos.DrawCube(transform.position, Vector3.one * 5);
+    }
 }
