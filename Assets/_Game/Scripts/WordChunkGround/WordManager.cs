@@ -20,7 +20,7 @@ public class WordManager : MonoBehaviour
     }
     [Header("Element")]
     [SerializeField] private Transform wordTF;
-    private Chunk[,] grid;
+    private ChunkGround[,] grid;
 
     [Header("Settings")]
     [SerializeReference] private int gridSize;
@@ -36,14 +36,14 @@ public class WordManager : MonoBehaviour
 
     private void Awake()
     {
-        Chunk.onUnlocked += ChunkUnlockedCallback;
-        Chunk.onPriceChanged += ChunkPriceChangeCallback;
+        ChunkGround.onUnlocked += ChunkUnlockedCallback;
+        ChunkGround.onPriceChanged += ChunkPriceChangeCallback;
     }
 
     private void OnDestroy()
     {
-        Chunk.onUnlocked -= ChunkUnlockedCallback;
-        Chunk.onPriceChanged -= ChunkPriceChangeCallback;
+        ChunkGround.onUnlocked -= ChunkUnlockedCallback;
+        ChunkGround.onPriceChanged -= ChunkPriceChangeCallback;
     }
 
     private void Start()
@@ -58,7 +58,7 @@ public class WordManager : MonoBehaviour
     private void Initialize()
     {
         for (int i = 0; i < wordTF.childCount; i++)
-            wordTF.GetChild(i).GetComponent<Chunk>().Initialize(wordData.chunkPrices[i]);
+            wordTF.GetChild(i).GetComponent<ChunkGround>().Initialize(wordData.chunkPrices[i]);
 
         InitGrid();
         UpdateChunkWalls();
@@ -67,16 +67,16 @@ public class WordManager : MonoBehaviour
 
     private void InitGrid()
     {
-        grid = new Chunk[gridSize,gridSize];
+        grid = new ChunkGround[gridSize,gridSize];
 
         for (int i = 0; i < wordTF.childCount; i++)
         {
-            Chunk chunk = wordTF.GetChild(i).GetComponent<Chunk>();
+            ChunkGround chunkGround = wordTF.GetChild(i).GetComponent<ChunkGround>();
 
-            Vector2Int chunkGridPosition = new Vector2Int((int)chunk.transform.position.x / gridScale, (int)chunk.transform.position.z / gridScale);
+            Vector2Int chunkGridPosition = new Vector2Int((int)chunkGround.transform.position.x / gridScale, (int)chunkGround.transform.position.z / gridScale);
 
             chunkGridPosition += new Vector2Int(gridSize / 2, gridSize / 2);
-            grid[chunkGridPosition.x, chunkGridPosition.y] = chunk;
+            grid[chunkGridPosition.x, chunkGridPosition.y] = chunkGround;
         }
 
         // for (int i = 0; i < gridSize; i++)
@@ -90,14 +90,14 @@ public class WordManager : MonoBehaviour
         for (int x = 0; x < grid.GetLength(0); x++)
             for (int y = 0; y < grid.GetLength(1); y++)
             {
-                Chunk chunk = grid[x, y];
+                ChunkGround chunkGround = grid[x, y];
                 
-                if(chunk != null)
+                if(chunkGround != null)
                 {
-                    Chunk fornt = GetGrid(x, y + 1);
-                    Chunk right = GetGrid(x + 1, y);
-                    Chunk back = GetGrid(x, y - 1);
-                    Chunk left = GetGrid(x - 1, y);
+                    ChunkGround fornt = GetGrid(x, y + 1);
+                    ChunkGround right = GetGrid(x + 1, y);
+                    ChunkGround back = GetGrid(x, y - 1);
+                    ChunkGround left = GetGrid(x - 1, y);
 
                     //Sử dụng ố ệ nhị phân 1 = 0001; 3 = 0011; 7 = 0111; 15 = 1111;
                     int configuration = 0;
@@ -110,63 +110,63 @@ public class WordManager : MonoBehaviour
                     if(left&& left.IsUnlocked())
                         configuration = configuration + 8;
                     
-                    chunk.UpdateWall(configuration);
-                    SetChunkRenderer(chunk, configuration);
+                    chunkGround.UpdateWall(configuration);
+                    SetChunkRenderer(chunkGround, configuration);
                 }
             }
     }
 
-    private void SetChunkRenderer(Chunk chunk, int configuration)
+    private void SetChunkRenderer(ChunkGround chunkGround, int configuration)
     {
         switch (configuration)
         {
             case 0:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Four]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.Four]); 
                 break;
             case 1:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Bottom]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.Bottom]); 
                 break;
             case 2:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Left]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.Left]); 
                 break;
             case 3:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.BottomLeft]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.BottomLeft]); 
                 break;
             case 4:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Top]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.Top]); 
                 break;
             case 5:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
             case 6:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.TopLeft]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.TopLeft]); 
                 break;
             case 7:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
             case 8:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.Right]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.Right]); 
                 break;
             case 9:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.BottomRight]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.BottomRight]); 
                 break;
             case 10:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
             case 11:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
             case 12:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.TopRight]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.TopRight]); 
                 break;
             case 13:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
             case 14:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
             case 15:
-                chunk.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
+                chunkGround.SetRenderer(chunkShapes[(int)ChunkShape.None]); 
                 break;
         }
     }
@@ -179,29 +179,29 @@ public class WordManager : MonoBehaviour
         for (int x = 0; x < grid.GetLength(0); x++)
             for (int y = 0; y < grid.GetLength(1); y++)
             {
-                Chunk chunk = grid[x, y];
+                ChunkGround chunkGround = grid[x, y];
 
-                if (chunk == null)
+                if (chunkGround == null)
                     continue;
-                if(chunk.IsUnlocked())
+                if(chunkGround.IsUnlocked())
                     continue;
-                Chunk fornt = GetGrid(x, y + 1);
-                Chunk right = GetGrid(x + 1, y);
-                Chunk back = GetGrid(x, y - 1);
-                Chunk left = GetGrid(x - 1, y);
+                ChunkGround fornt = GetGrid(x, y + 1);
+                ChunkGround right = GetGrid(x + 1, y);
+                ChunkGround back = GetGrid(x, y - 1);
+                ChunkGround left = GetGrid(x - 1, y);
 
                 if (fornt && fornt.IsUnlocked())
-                    chunk.DisplayLockedElements();    
+                    chunkGround.DisplayLockedElements();    
                 else if(right&& right.IsUnlocked())
-                    chunk.DisplayLockedElements();    
+                    chunkGround.DisplayLockedElements();    
                 else if(back&& back.IsUnlocked())
-                    chunk.DisplayLockedElements();    
+                    chunkGround.DisplayLockedElements();    
                 else if(left&& left.IsUnlocked())
-                    chunk.DisplayLockedElements();    
+                    chunkGround.DisplayLockedElements();    
             }
     }
     
-    private Chunk GetGrid(int x, int y)
+    private ChunkGround GetGrid(int x, int y)
     {
         if (IsValiGridPosition(x, y))
             return grid[x, y];
@@ -246,7 +246,7 @@ public class WordManager : MonoBehaviour
             wordData = new WordData();
 
             for (int i = 0; i < wordTF.childCount; i++)
-                wordData.chunkPrices.Add(wordTF.GetChild(i).GetComponent<Chunk>().GetInitialPrice());
+                wordData.chunkPrices.Add(wordTF.GetChild(i).GetComponent<ChunkGround>().GetInitialPrice());
 
             string worldDataString = JsonUtility.ToJson(wordData, true);
             byte[] worldDataByte = Encoding.UTF8.GetBytes(worldDataString);
@@ -267,7 +267,7 @@ public class WordManager : MonoBehaviour
     {
         int missingData = wordTF.childCount - wordData.chunkPrices.Count;
         for (int i = 0; i < missingData; i++)
-            wordData.chunkPrices.Add(wordTF.GetChild(wordTF.childCount - missingData + i).GetComponent<Chunk>().GetInitialPrice());
+            wordData.chunkPrices.Add(wordTF.GetChild(wordTF.childCount - missingData + i).GetComponent<ChunkGround>().GetInitialPrice());
     }
 
     private void SaveWord()
@@ -277,9 +277,9 @@ public class WordManager : MonoBehaviour
 
         for (int i = 0; i < wordTF.childCount; i++)
             if(wordData.chunkPrices.Count>i)
-                wordData.chunkPrices[i] = wordTF.GetChild(i).GetComponent<Chunk>().GetCurrentPrice();
+                wordData.chunkPrices[i] = wordTF.GetChild(i).GetComponent<ChunkGround>().GetCurrentPrice();
             else
-                wordData.chunkPrices.Add(wordTF.GetChild(i).GetComponent<Chunk>().GetCurrentPrice());
+                wordData.chunkPrices.Add(wordTF.GetChild(i).GetComponent<ChunkGround>().GetCurrentPrice());
         
         string data = JsonUtility.ToJson(wordData, true);
         

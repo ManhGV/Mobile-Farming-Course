@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class WaterParticles : MonoBehaviour
 {
-    public static Action<Vector3[]> onWatersCollided;
-    
     private void OnParticleCollision(GameObject other)
     {
         ParticleSystem ps = GetComponent<ParticleSystem>();
@@ -18,6 +16,6 @@ public class WaterParticles : MonoBehaviour
         for (int i = 0; i < collisionAmount; i++)
             collisionPositions[i] = collisionEvents[i].intersection;
         
-        onWatersCollided?.Invoke(collisionPositions);
+        EventManager.OnWatersCollided?.Invoke(collisionPositions);
     }
 }

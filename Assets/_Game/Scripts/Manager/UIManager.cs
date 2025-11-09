@@ -12,18 +12,18 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerDetection.onEnteredTreeZone += EnteredTreeZoneCallBack;
-        PlayerDetection.onExitedTreeZone += ExitTreeZoneCallBack;
-        AppleTreeManager.onTreeModeStated += SetTreeMode;
-        AppleTreeManager.onTreeModeEnded += SetGameMode;
+        EventManager.OnEnteredTreeZone += EnteredTreeZoneCallBack;
+        EventManager.OnExitedTreeZone += ExitTreeZoneCallBack;
+        EventManager.OnTreeModeStated += SetTreeMode;
+        EventManager.OnTreeModeEnded += SetGameMode;
     }
 
     private void OnDestroy()
     {
-        PlayerDetection.onEnteredTreeZone -= EnteredTreeZoneCallBack;
-        PlayerDetection.onExitedTreeZone -= ExitTreeZoneCallBack;
-        AppleTreeManager.onTreeModeStated -= SetTreeMode;
-        AppleTreeManager.onTreeModeEnded -= SetGameMode;
+        EventManager.OnEnteredTreeZone -= EnteredTreeZoneCallBack;
+        EventManager.OnExitedTreeZone -= ExitTreeZoneCallBack;
+        EventManager.OnTreeModeStated -= SetTreeMode;
+        EventManager.OnTreeModeEnded -= SetGameMode;
     }
 
     private void Start()

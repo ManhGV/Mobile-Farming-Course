@@ -12,9 +12,6 @@ public class CropTile : MonoBehaviour
     private Crop _crop;
     private CropData _cropData;
 
-    [Header("Events")]
-    public static Action<CropType> OnCropHavested;
-
     private void Start()
     {
         _state = TileFieldState.Empty;
@@ -48,6 +45,6 @@ public class CropTile : MonoBehaviour
         _crop.ScaleDown();
         tileRenderer.gameObject.LeanColor(Color.white, 1);
         
-        OnCropHavested?.Invoke(_cropData.cropType);
+        EventManager.OnCropHavested?.Invoke(_cropData.cropType);
     }
 }

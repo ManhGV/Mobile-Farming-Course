@@ -4,14 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerToolSeletor : MonoBehaviour
 {
-    public enum Tool
-    {
-        None,
-        Sow,
-        Water,
-        Harvest
-    }
-
     [Header("Elements")]
     [SerializeField] private Image[] toolImages;
     
@@ -19,7 +11,6 @@ public class PlayerToolSeletor : MonoBehaviour
     [SerializeField] private Color selectToolColor;
 
     private Tool activeTool;
-    public Action<Tool> onToolSelected;
 
     private void Start()
     {
@@ -32,7 +23,7 @@ public class PlayerToolSeletor : MonoBehaviour
         for (int i = 0; i < toolImages.Length; i++)
             toolImages[i].color = i == indexTool ? selectToolColor : Color.white;
 
-        onToolSelected?.Invoke(activeTool);
+        EventManager.OnToolSelected?.Invoke(activeTool);
     }
 
     public bool CanSow() => activeTool == Tool.Sow;

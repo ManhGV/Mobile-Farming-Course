@@ -2,11 +2,17 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+public class ChunkGround : MonoBehaviour
 {
+    [Header("DATA - SO")]
+    [SerializeField] private SOChunkGround _chunkGroundData;
+    
+    [Header("Lock - Unlock")]
+    [SerializeField] private MeshRenderer _chunkGroundRenderer;
+    [SerializeField] private GameObject _unlockedElements;
+    [SerializeField] private GameObject _lockedElements;
+    
     [Header("Element")]
-    [SerializeField] private GameObject unlockedElements;
-    [SerializeField] private GameObject lockedElements;
     [SerializeField] private TextMeshPro priceText;
     [SerializeField] private BoxCollider boxTrigger;
     [SerializeField] private MeshFilter chunkFilter;
@@ -58,8 +64,8 @@ public class Chunk : MonoBehaviour
 
     private void Unlock(bool CanSave = true)
     {
-        unlockedElements.SetActive(true);
-        lockedElements.SetActive(false);
+        _unlockedElements.SetActive(true);
+        _lockedElements.SetActive(false);
         boxTrigger.enabled = false;
         unlocked = true;
         if(CanSave) 
@@ -74,7 +80,7 @@ public class Chunk : MonoBehaviour
 
     public void DisplayLockedElements()
     {
-        lockedElements.SetActive(true);
+        _lockedElements.SetActive(true);
     }
 
     public void SetRenderer(Mesh chunkShape)

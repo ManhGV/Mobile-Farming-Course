@@ -14,11 +14,6 @@ public class CropField : MonoBehaviour
     private int tilesSown;
     private int tilesWatered;
     private int tilesHarvest;
-    
-    [Header("Actions")]
-    public static Action<CropField> OnFullySown;
-    public static Action<CropField> OnFullyWatered;
-    public static Action<CropField> OnFullyHavert;
 
     void Start()
     {
@@ -59,7 +54,7 @@ public class CropField : MonoBehaviour
     private void FieldFullySown()
     {
         state = TileFieldState.Sown;
-        OnFullySown?.Invoke(this);
+        EventManager.OnFullySown?.Invoke(this);
     }
 
     private CropTile GetClosestCropTile(Vector3 seedPosition)
@@ -113,7 +108,7 @@ public class CropField : MonoBehaviour
     {
         state = TileFieldState.Watered;
         
-        OnFullyWatered?.Invoke(this);
+        EventManager.OnFullyWatered?.Invoke(this);
     }
 
     public void Harvest(Transform harvestSphere)
@@ -146,7 +141,7 @@ public class CropField : MonoBehaviour
         tilesHarvest = 0;
         
         state = TileFieldState.Empty;
-        OnFullyHavert?.Invoke(this);
+        EventManager.OnFullyHavert?.Invoke(this);
     }
 
     public bool IsEmpty() => state == TileFieldState.Empty;

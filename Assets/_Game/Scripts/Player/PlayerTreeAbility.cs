@@ -19,14 +19,14 @@ public class PlayerTreeAbility : MonoBehaviour
     private void Awake()
     {
         _playerAimator = GetComponent<PlayerAimator>();
-        AppleTreeManager.onTreeModeStated += TreeModeStatedCallBack;
-        AppleTreeManager.onTreeModeEnded += TreeModeEndedCallBack;
+        EventManager.OnTreeModeStated += TreeModeStatedCallBack;
+        EventManager.OnTreeModeEnded += TreeModeEndedCallBack;
     }
 
     private void OnDestroy()
     {
-        AppleTreeManager.onTreeModeEnded -= TreeModeEndedCallBack;
-        AppleTreeManager.onTreeModeStated -= TreeModeStatedCallBack;
+        EventManager.OnTreeModeEnded -= TreeModeEndedCallBack;
+        EventManager.OnTreeModeStated -= TreeModeStatedCallBack;
     }
 
     private void Update()

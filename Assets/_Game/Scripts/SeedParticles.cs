@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class SeedParticles : MonoBehaviour
 {
-    public static Action<Vector3[]> onSeedsCollided;
     
     private void OnParticleCollision(GameObject other)
     {
@@ -20,6 +19,6 @@ public class SeedParticles : MonoBehaviour
             collisionPositions[i] = collisionEvents[i].intersection;
         }
         
-        onSeedsCollided?.Invoke(collisionPositions);
+        EventManager.OnSeedsCollided?.Invoke(collisionPositions);
     }
 }

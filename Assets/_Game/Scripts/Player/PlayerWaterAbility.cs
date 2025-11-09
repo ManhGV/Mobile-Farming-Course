@@ -17,19 +17,19 @@ public class PlayerWaterAbility : MonoBehaviour
         playerAnimator = GetComponent<PlayerAimator>();
         playerToolSeletor = GetComponent<PlayerToolSeletor>();
 
-        WaterParticles.onWatersCollided += WatersCollidedCallback;
-        CropField.OnFullyWatered += CropFieldFullyWateredCallback;
-        playerToolSeletor.onToolSelected += ToolSelectedCallback;
+        EventManager.OnWatersCollided += WatersCollidedCallback;
+        EventManager.OnFullyWatered += CropFieldFullyWateredCallback;
+        EventManager.OnToolSelected += ToolSelectedCallback;
     }
 
     private void OnDestroy()
     {
-        WaterParticles.onWatersCollided -= WatersCollidedCallback;
-        CropField.OnFullyWatered -= CropFieldFullyWateredCallback;
-        playerToolSeletor.onToolSelected -= ToolSelectedCallback;
+        EventManager.OnWatersCollided -= WatersCollidedCallback;
+        EventManager.OnFullyWatered -= CropFieldFullyWateredCallback;
+        EventManager.OnToolSelected -= ToolSelectedCallback;
     }
 
-    private void ToolSelectedCallback(PlayerToolSeletor.Tool selectedTool)
+    private void ToolSelectedCallback(Tool selectedTool)
     {
         if(!playerToolSeletor.CanWater())
             playerAnimator.StopWaterAnimation();

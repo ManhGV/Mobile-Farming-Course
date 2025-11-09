@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class PlayerDetection : MonoBehaviour
 {
-    [Header("Actions")] [CanBeNull]
-    public static Action<AppleTree> onEnteredTreeZone;
-    public static Action<AppleTree> onExitedTreeZone;
-    
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("ChunkTrigger"))
         {
-            other.GetComponent<Chunk>().TryUnlock();
+            other.GetComponent<ChunkGround>().TryUnlock();
         }
     }
 
@@ -30,11 +26,11 @@ public class PlayerDetection : MonoBehaviour
 
     private void ExitedAppleTree(AppleTree component)
     {
-        onExitedTreeZone?.Invoke(component);
+        EventManager.OnExitedTreeZone?.Invoke(component);
     }
 
     private void TriggeredAppleTree(AppleTree component)
     {
-        onEnteredTreeZone?.Invoke(component);
+        EventManager.OnEnteredTreeZone?.Invoke(component);
     }
 }

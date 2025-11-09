@@ -17,19 +17,19 @@ public class PlayerSowAbility : MonoBehaviour
         playerAnimator = GetComponent<PlayerAimator>();
         playerToolSeletor = GetComponent<PlayerToolSeletor>();
 
-        SeedParticles.onSeedsCollided += SeedsCollidedCallback;
-        CropField.OnFullySown += CropFieldFullySownCallback;
-        playerToolSeletor.onToolSelected += ToolSelectedCallback;
+        EventManager.OnSeedsCollided += SeedsCollidedCallback;
+        EventManager.OnFullySown += CropFieldFullySownCallback;
+        EventManager.OnToolSelected += ToolSelectedCallback;
     }
 
     private void OnDestroy()
     {
-        SeedParticles.onSeedsCollided -= SeedsCollidedCallback;
-        CropField.OnFullySown -= CropFieldFullySownCallback;
-        playerToolSeletor.onToolSelected -= ToolSelectedCallback;
+        EventManager.OnSeedsCollided -= SeedsCollidedCallback;
+        EventManager.OnFullySown -= CropFieldFullySownCallback;
+        EventManager.OnToolSelected -= ToolSelectedCallback;
     }
 
-    private void ToolSelectedCallback(PlayerToolSeletor.Tool selectedTool)
+    private void ToolSelectedCallback(Tool selectedTool)
     {
         if(!playerToolSeletor.CanSow())
             playerAnimator.StopSowAnimation();

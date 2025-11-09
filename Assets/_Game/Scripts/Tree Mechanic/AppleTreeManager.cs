@@ -9,19 +9,15 @@ public class AppleTreeManager : MonoBehaviour
     
     [Header("Settings")] 
     private AppleTree lastTriggeredTree;
-    
-    [Header("Actions")]
-    public static Action<AppleTree> onTreeModeStated;
-    public static Action onTreeModeEnded;
 
     private void Awake()
     {
-        PlayerDetection.onEnteredTreeZone += EnteredTreeZoneCallBack;
+        EventManager.OnEnteredTreeZone += EnteredTreeZoneCallBack;
     }
 
     private void OnDestroy()
     {
-        PlayerDetection.onEnteredTreeZone += EnteredTreeZoneCallBack;
+        EventManager.OnEnteredTreeZone += EnteredTreeZoneCallBack;
     }
 
     private void EnteredTreeZoneCallBack(AppleTree obj)
@@ -38,7 +34,7 @@ public class AppleTreeManager : MonoBehaviour
     private void StartTreeMode()
     {
         lastTriggeredTree.Initialize(this);
-        onTreeModeStated?.Invoke(lastTriggeredTree);
+        EventManager.OnTreeModeStated?.Invoke(lastTriggeredTree);
         UpdateShakeSlider(0);
     }
 
@@ -49,6 +45,6 @@ public class AppleTreeManager : MonoBehaviour
 
     public void EndTreeMode()
     {
-        onTreeModeEnded?.Invoke();
+        EventManager.OnTreeModeEnded?.Invoke();
     }
 }

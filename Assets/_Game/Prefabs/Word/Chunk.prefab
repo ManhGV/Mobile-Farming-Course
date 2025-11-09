@@ -953,6 +953,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a3be1b3b5e0144e8d2a7119a0b47e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
+  _chunkGroundData: {fileID: 0}
+  _chunkGroundRenderer: {fileID: 0}
+  _unlockedElements: {fileID: 4821068245998709359}
+  _lockedElements: {fileID: 1848331219219527778}
   unlockedElements: {fileID: 4821068245998709359}
   lockedElements: {fileID: 1848331219219527778}
   priceText: {fileID: 4161234914196101879}

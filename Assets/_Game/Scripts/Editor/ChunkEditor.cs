@@ -3,7 +3,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Chunk))]
+[CustomEditor(typeof(ChunkGround))]
 public class ChunkEditor : Editor
 {
     private void OnSceneGUI()
@@ -11,8 +11,8 @@ public class ChunkEditor : Editor
         GUIStyle style = new GUIStyle();
         style.alignment = TextAnchor.MiddleCenter;
         
-        Chunk chunk = (Chunk)target;
-        Handles.Label(chunk.transform.position, chunk.name, style);
+        ChunkGround chunkGround = (ChunkGround)target;
+        Handles.Label(chunkGround.transform.position, chunkGround.name, style);
     }
 }
 #endif
